@@ -1,0 +1,125 @@
+#include "Klase.h"
+#include<cstring>
+#include<iostream>
+using namespace std;
+
+void Pilot::printpilot() const
+{
+	char tacno;
+	if (letili) { tacno = 'L'; }
+	else { tacno = 'N'; }
+	cout << ime << "(" << sati << ")-" << tacno << endl;  //#include<cstring>, nekad radi sa string, a neked sa cstring
+}
+
+void Pilot::povecajsati(int s)
+{
+	sati = sati + s;
+}
+
+int Pilot::satii()
+{
+	return sati;
+}
+
+bool Pilot::letilii() 
+{
+	return letili;
+}
+
+void Pilot::promeniletili(bool a) // nije vracala vrednost nv, #2 edit: bolje da je void kad vec menja!
+{
+	letili = a;	// dodato! #2edit: promenjeno u void znaci obrisano pretodno dodato return letili;
+}
+
+string Pilot::imee()
+{
+	return ime;
+}
+
+/*ZA AVION*/
+
+void Avion::printavion() const {
+	cout << "AVION:" << naziv << "-" << max << endl;
+}
+
+void Avion::kapetann()
+{
+	kapetan->printpilot();
+}
+
+void Avion::kopiloot()
+{
+	kopilot->printpilot();
+}
+
+string Avion::nazivv()
+{
+	return naziv;
+}
+
+void Avion::kapetanaviona(Pilot* kapetann)
+{
+	kapetan = kapetann;
+	if (kapetann->satii() > 100, kapetann->letilii() == false) { kapetan = kapetann; kapetann->promeniletili(true); }  //== Ana!!!
+	else cout << "Nema dovoljan broj sati za pilota ili je trenutno zauzet" << endl;
+}
+
+void Avion::kopilotaviona(Pilot* kopilott)
+{
+	kapetan = kopilott;
+	if (kopilot->letilii() == false) { kopilot = kopilott; kopilott->promeniletili(true); }
+	else cout << "Trenutno je zauzet" << endl;
+
+}
+
+int Avion::maxx()
+{
+	return max;
+}
+
+/*ZA FLOTU*/
+
+void Flota::printflota()
+{
+	cout << "FLOTA:" << naziv << endl;
+	for (int i = 1; i < broj; i++) {
+		cout << i << "." << "\nAvion" << avioni[i]->nazivv() << "\n";
+	}
+
+}
+
+int Flota::ukupnoaviona()
+{
+	return broj;
+}
+
+int Flota::maxputnika()
+{
+	int s = 0;
+	for (int i = 0; i < broj; i++) {
+		s = s + avioni[i]->maxx();
+	}
+	return s;
+}
+
+int Flota::findbiggest()
+{
+	int k=0; int s=0; //kao inicijalizovo sam da ne kuka VS mada ne mora, samo jer me VS NERVIRA dosadan je u pm
+	k = avioni[0]->maxx();
+	for (int i = 0; i < broj; i++) {
+		if (avioni[i]->maxx() > k) {
+			k = avioni[i]->maxx(); s = i;
+		};
+	};
+	cout << "Avion koji moze primiti najvise putnika je:" << avioni[s]->nazivv() << "i taj broj putnika je"; return k;
+}
+
+void Flota::addplane(Avion* a)
+{
+//	Avion** nizaviona; ANA NE DVE DEFINICIJE JEBEMU SEME!
+	Avion** nizaviona = nullptr;
+	for (int i = 0; i < broj; i++) {
+		Avion* avion = nullptr; //samo sam ga inicijalizovao na null da ne kuka visual nije greska!
+		nizaviona[i] = avion; // place Viusal pa place al mora tako, moze da se malo ojaca nekim ifom al mrzi mene tkd i tebe
+	}
+}
