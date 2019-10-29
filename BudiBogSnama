@@ -8,7 +8,7 @@ void Pilot::printpilot() const
 	char tacno;
 	if (letili) { tacno = 'L'; }
 	else { tacno = 'N'; }
-	cout << ime << "(" << sati << ")-" << tacno << endl;  //#include<cstring>, nekad radi sa string, a neked sa cstring
+	cout << ime << "(" << sati << ")-" << tacno << endl;  
 }
 
 void Pilot::povecajsati(int s)
@@ -21,14 +21,14 @@ int Pilot::satii()
 	return sati;
 }
 
-bool Pilot::letilii() 
+bool Pilot::letilii()
 {
 	return letili;
 }
 
-void Pilot::promeniletili(bool a) // nije vracala vrednost nv, #2 edit: bolje da je void kad vec menja!
+void Pilot::promeniletili(bool a)
 {
-	letili = a;	// dodato! #2edit: promenjeno u void znaci obrisano pretodno dodato return letili;
+	letili = a;	
 }
 
 string Pilot::imee()
@@ -60,7 +60,7 @@ string Avion::nazivv()
 void Avion::kapetanaviona(Pilot* kapetann)
 {
 	kapetan = kapetann;
-	if (kapetann->satii() > 100, kapetann->letilii() == false) { kapetan = kapetann; kapetann->promeniletili(true); }  //== Ana!!!
+	if (kapetann->satii() > 100, kapetann->letilii() == false) { kapetan = kapetann; kapetann->promeniletili(true); }
 	else cout << "Nema dovoljan broj sati za pilota ili je trenutno zauzet" << endl;
 }
 
@@ -104,7 +104,7 @@ int Flota::maxputnika()
 
 int Flota::findbiggest()
 {
-	int k=0; int s=0; //kao inicijalizovo sam da ne kuka VS mada ne mora, samo jer me VS NERVIRA dosadan je u pm
+	int k = 0; int s = 0; 
 	k = avioni[0]->maxx();
 	for (int i = 0; i < broj; i++) {
 		if (avioni[i]->maxx() > k) {
@@ -114,12 +114,6 @@ int Flota::findbiggest()
 	cout << "Avion koji moze primiti najvise putnika je:" << avioni[s]->nazivv() << "i taj broj putnika je"; return k;
 }
 
-void Flota::addplane(Avion* a)
-{
-//	Avion** nizaviona; ANA NE DVE DEFINICIJE JEBEMU SEME!
-	Avion** nizaviona = nullptr;
-	for (int i = 0; i < broj; i++) {
-		Avion* avion = nullptr; //samo sam ga inicijalizovao na null da ne kuka visual nije greska!
-		nizaviona[i] = avion; // place Viusal pa place al mora tako, moze da se malo ojaca nekim ifom al mrzi mene tkd i tebe
-	}
+void Flota::addplanes(Avion** avionii) {
+	avioni = avionii;
 }
